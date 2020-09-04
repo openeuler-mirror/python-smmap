@@ -1,0 +1,4 @@
+version_control: github
+src_repo: gitpython-developers/smmap
+tag_prefix:
+separator: "."
