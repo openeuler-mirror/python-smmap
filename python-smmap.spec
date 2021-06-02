@@ -1,39 +1,50 @@
 %global _empty_manifest_terminate_build 0
 Name:		python-smmap
-Version:	3.0.4
+Version:	0.8.5
 Release:	1
-Summary:	A pure Python implementation of a sliding window memory map manager
+Summary:	A pure git implementation of a sliding window memory map manager
 License:	BSD
 URL:		https://github.com/gitpython-developers/smmap
-Source0:	https://files.pythonhosted.org/packages/75/fb/2f594e5364f9c986b2c89eb662fc6067292cb3df2b88ae31c939b9138bb9/smmap-3.0.4.tar.gz
+Source0:	https://files.pythonhosted.org/packages/b9/4d/849ec5427a58981538739212e43f6019da27995388afb2416eb891e5daad/smmap-0.8.5.tar.gz
 BuildArch:	noarch
-
-
 %description
-%{summary}
+When reading from many possibly large files in a fashion similar to random access, it is usually the fastest and most efficient to use memory maps.
 
-%package -n python3-smmap
-Summary:	A pure Python implementation of a sliding window memory map manager
-Provides:	python-smmap
-BuildRequires:	python3-devel
-BuildRequires:	python3-setuptools
-%description -n python3-smmap
-%{summary}
+Although memory maps have many advantages, they represent a very limited system resource as every map uses one file descriptor, whose amount is limited per process. On 32 bit systems, the amount of memory you can have mapped at a åtime is naturally limited to theoretical 4GB of memory, which may not be enough for some applications.
+
+**The documentation can be found here**: http://smmap.readthedocs.org
+
+%package -n python2-smmap
+Summary:	A pure git implementation of a sliding window memory map manager
+Provides:	python2-smmap
+BuildRequires:	python2-devel
+BuildRequires:	python2-setuptools
+BuildRequires:	python2-pbr
+%description -n python2-smmap
+When reading from many possibly large files in a fashion similar to random access, it is usually the fastest and most efficient to use memory maps.
+
+Although memory maps have many advantages, they represent a very limited system resource as every map uses one file descriptor, whose amount is limited per process. On 32 bit systems, the amount of memory you can have mapped at a åtime is naturally limited to theoretical 4GB of memory, which may not be enough for some applications.
+
+**The documentation can be found here**: http://smmap.readthedocs.org
 
 %package help
 Summary:	Development documents and examples for smmap
-Provides:	python3-smmap-doc
+Provides:	python2-smmap-doc
 %description help
-%{summary}
+When reading from many possibly large files in a fashion similar to random access, it is usually the fastest and most efficient to use memory maps.
+
+Although memory maps have many advantages, they represent a very limited system resource as every map uses one file descriptor, whose amount is limited per process. On 32 bit systems, the amount of memory you can have mapped at a åtime is naturally limited to theoretical 4GB of memory, which may not be enough for some applications.
+
+**The documentation can be found here**: http://smmap.readthedocs.org
 
 %prep
-%autosetup -n smmap-3.0.4
+%autosetup -n smmap-0.8.5
 
 %build
-%py3_build
+%py2_build
 
 %install
-%py3_install
+%py2_install
 install -d -m755 %{buildroot}/%{_pkgdocdir}
 if [ -d doc ]; then cp -arf doc %{buildroot}/%{_pkgdocdir}; fi
 if [ -d docs ]; then cp -arf docs %{buildroot}/%{_pkgdocdir}; fi
@@ -60,12 +71,12 @@ popd
 mv %{buildroot}/filelist.lst .
 mv %{buildroot}/doclist.lst .
 
-%files -n python3-smmap -f filelist.lst
-%dir %{python3_sitelib}/*
+%files -n python2-smmap -f filelist.lst
+%dir %{python2_sitelib}/*
 
 %files help -f doclist.lst
 %{_docdir}/*
 
 %changelog
-* Fri Sep 04 2020 Python_Bot <Python_Bot@openeuler.org>
+* Tue Jun 01 2021 OpenStack_SIG <openstack@openeuler.org>
 - Package Spec generated
