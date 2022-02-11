@@ -1,7 +1,7 @@
 %global _empty_manifest_terminate_build 0
 Name:           python-smmap
 Version:        3.0.5
-Release:        1
+Release:        2
 Summary:        A pure Python implementation of a sliding window memory map manager
 License:        BSD
 URL:            https://github.com/gitpython-developers/smmap
@@ -20,7 +20,6 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr
 BuildRequires:  python3-pip
 BuildRequires:  python3-wheel
-BuildRequires:  python3-nosexcover
 
 %description -n python3-smmap
 A pure Python implementation of a sliding window memory map manager
@@ -77,6 +76,9 @@ mv %{buildroot}/doclist.lst .
 %{_docdir}/*
 
 %changelog
+* Fri Feb 11 2022 wangxiyuan <wangxiyuan1007@gmail.com> - 3.0.5-2
+- Remove nosecover BuildRequire since the required nose library has been removed from openEuler already.
+
 * Fri Aug 06 2021 OpenStack_SIG <openstack@openeuler.org> - 3.0.5-1
 - Upgrade version to 3.0.5
 
