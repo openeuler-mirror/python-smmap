@@ -1,7 +1,7 @@
 %global _empty_manifest_terminate_build 0
 Name:           python-smmap
 Version:        3.0.5
-Release:        1
+Release:        2
 Summary:        A pure Python implementation of a sliding window memory map manager
 License:        BSD
 URL:            https://github.com/gitpython-developers/smmap
@@ -20,7 +20,7 @@ BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr
 BuildRequires:  python3-pip
 BuildRequires:  python3-wheel
-BuildRequires:  python3-nosexcover
+BuildRequires:  python3-pytest
 
 %description -n python3-smmap
 A pure Python implementation of a sliding window memory map manager
@@ -68,7 +68,7 @@ mv %{buildroot}/filelist.lst .
 mv %{buildroot}/doclist.lst .
 
 %check
-%{__python3} setup.py test
+pytest
 
 %files -n python3-smmap -f filelist.lst
 %dir %{python3_sitelib}/*
@@ -77,6 +77,9 @@ mv %{buildroot}/doclist.lst .
 %{_docdir}/*
 
 %changelog
+* Fri May 13 2022 xu_ping <xuping33@h-partners.com> - 3.0.5-2
+- Remove test dependencies on python-nosexcover during the build process
+
 * Fri Aug 06 2021 OpenStack_SIG <openstack@openeuler.org> - 3.0.5-1
 - Upgrade version to 3.0.5
 
